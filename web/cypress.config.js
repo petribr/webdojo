@@ -2,6 +2,8 @@ const { defineConfig } = require("cypress");
 const fs = require('fs')
 const path = require('path')
 
+const {readPdf} = require('./cypress/support/helper')
+
 module.exports = {
   e2e: {
      setupNodeEvents(on, config) {
@@ -19,8 +21,15 @@ module.exports = {
           fs.writeFileSync(filePath, Buffer.from(buffer))
           return filePath
         }
+      }),
+      on ('task', {
+        readPdf
       })
-    }
+    },
+    experimentalStudio: true,
+    video: false
+    // this is not a good aproach, but can be helpful in some context
+    // global timeout
     //,defaultCommandTimeout: 10000
   }
 }

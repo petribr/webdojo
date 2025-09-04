@@ -1,12 +1,8 @@
 describe('Consulta de CEP', () => {  
   it('Exibe mensagem de erro quando backend retorna 500', () => { 
-    // Inicia a aplicação
-    cy.start();  
-    
-    // Faz login com email e senha
-    cy.submitLoginForm('papito@webdojo.com', 'katana123');  
+    cy.login()
 
-        // Intercepta o endpoint que o frontend consome e força erro 500
+    // Intercepta o endpoint que o frontend consome e força erro 500
     cy.intercept('GET', 'https://viacep.com.br/ws/*/json/', {
       statusCode: 400,
       body: { message: 'Erro interno do servidor' }
@@ -29,14 +25,10 @@ describe('Consulta de CEP', () => {
     });
   });
 
-  it.only('Resposta do serviço totalmente mockada - 200 ok', () => { 
-    // Inicia a aplicação
-    cy.start();  
-    
-    // Faz login com email e senha
-    cy.submitLoginForm('papito@webdojo.com', 'katana123');  
+  it('Resposta do serviço totalmente mockada - 200 ok', () => { 
+    cy.login()
 
-        // Intercepta o endpoint que o frontend consome e força erro 500
+    // Intercepta o endpoint que o frontend consome e força erro 500
     cy.intercept('GET', 'https://viacep.com.br/ws/*/json/', {
       statusCode: 200,
       body: {

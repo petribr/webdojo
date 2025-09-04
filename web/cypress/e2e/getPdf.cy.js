@@ -1,5 +1,5 @@
 describe('Download PDF from public URL and save to disk', () => {
-  it.only('GET binary PDF and save as file', () => {
+  it('GET binary PDF and save as file', () => {
     cy.request({
       method: 'GET',
       url: 'https://www.orimi.com/pdf-test.pdf',
@@ -15,5 +15,11 @@ describe('Download PDF from public URL and save to disk', () => {
           cy.log(`PDF salvo em: ${filePath}`)
         })
     })
+  })
+
+  it('Reading PDF', () => {
+    cy.task('readPdf', 'cypress/fixtures/recibo.pdf')
+      .should('contain', 'Papito Shop')
+      .and('contain', 'Total24.000')
   })
 })

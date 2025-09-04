@@ -1,7 +1,6 @@
 describe('template spec', () => {
   it('Login', () => {
-    cy.start()
-    cy.submitLoginForm('papito@webdojo.com', 'katana123')
+    cy.login()
     cy.wait(3000)
 
     cy.get('[data-cy="user-name"]')

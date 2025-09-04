@@ -28,7 +28,7 @@ describe('template spec', () => {
   })
 
   //it.only('Não deve logar com email não cadastrado', () => {
-  it.only('Não deve logar com email não cadastrado', () => {
+  it('Não deve logar com email não cadastrado', () => {
     cy.viewport(1440, 900)
     cy.visit('http://localhost:3000')
     cy.get('#email').type('pipato@webdojo.com')
